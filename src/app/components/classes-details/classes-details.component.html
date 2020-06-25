@@ -1,0 +1,46 @@
+<div *ngIf="currentClass" class="edit-form">
+    <h4>Classes</h4>
+    <form>
+        <div class="form-group">
+            <label for="code">code</label>
+            <input type="text" class="form-control" id="code" [(ngModel)]="currentClass.code" name="code" />
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="currentClass.name" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="max">max</label>
+            <input type="text" class="form-control" id="max" [(ngModel)]="currentClass.max_students" name="max" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="currentClass.description" name="description" />
+        </div>
+
+        <div class="form-group">
+            <label><strong>Status:</strong></label> {{ currentClass.status == 0 ? "Opened" : "Closed" }}
+        </div>
+    </form>
+
+    <button class="badge badge-primary mr-2" *ngIf="currentClass.status" (click)="updateStatus(false)">
+      Open
+    </button>
+    <button *ngIf="!currentClass.status" class="badge badge-primary mr-2" (click)="updateStatus(true)">
+      Close
+    </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteClasses()">
+      Delete
+    </button>
+
+    <button type="submit" class="badge badge-success" (click)="updateClasses()">
+      Update
+    </button>
+    <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentClass">
+    <br />
+    <p>Cannot access this Classes...</p>
+</div>
